@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Listen for XDebug",
+        "type": "php",
+        "request": "launch",
+        "port": 9001,
+        "pathMappings": {
+          // Dockerコンテナのdocument root : 開発環境のdocument root
+          "/var/www/html":"${workspaceFolder}/src/" 
+        }
+      }
+    ]
+}
