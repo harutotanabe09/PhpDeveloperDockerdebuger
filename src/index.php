@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
+<head>
+<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+</head>
 <body>
 
-<script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
 
 <!-- <form action="upload.php" method="post" enctype="multipart/form-data"> -->
-<form id="my_form">
+<!--  formリダイレクトしないようにreturn falseで返す -->
+<form id="my_form" onsubmit="file_upload();return false;">
     Select image to upload 
     <input type="file" name="fileToUpload" id="fileToUpload">
-    <input type="submit" value="Upload Image" name="submit" onclick="file_upload()">
+    <input type="submit" value="Upload Image" name="submit">
 </form>
-
 <script>
 function file_upload(){
     // フォームデータを取得
@@ -26,14 +28,16 @@ function file_upload(){
         cache       : false,
         contentType : false,
         processData : false,
-        dataType    : "html"
+        dataType    : "json"
     })
-    .done(function(data, textStatus, jqXHR){
-        alert(data);
+    .done( (data) => {
+                    console.log(data);
+                    alert("done" + data);
     })
-    .fail(function(jqXHR, textStatus, errorThrown){
-        alert("fail");
-    });
+    .always( (data) => {
+                    console.log(data);
+    })
+    return false;
 }
 </script>
 
